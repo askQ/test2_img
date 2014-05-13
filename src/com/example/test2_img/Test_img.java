@@ -57,17 +57,20 @@ public class Test_img extends Activity {
 			ContentResolver cr = this.getContentResolver();
 			
 			try { 
+				//對uri做縮圖
 				Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
 	
+				//大家都是tablerow 照片文字跟按建
 				tupian = (TableRow) findViewById(R.id.tupian); 
 				word=(TableRow)findViewById(R.id.word); 
 				shanchu = (TableRow) findViewById(R.id.shanchu); 
 
-			
+				//給tablerow view
 				tupian.addView(AddImageView(), 300 , 300);
 				word.addView(ShowWord(),300,300);
 				shanchu.addView(AddButton(), 300 , 50); 
 			
+				//將照片傳進去
 				ImageView imageView1 = (ImageView) findViewById(index);
 				ImageView_bi(imageView1 , bitmap );
 			} 
