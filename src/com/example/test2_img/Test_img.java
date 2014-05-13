@@ -36,7 +36,7 @@ public class Test_img extends Activity {
 		
 		Button button = (Button)findViewById(R.id.b01); 
 		
-		button.setText("选择图片");
+		button.setText("選擇照片");
 		
 		button.setOnClickListener(new Button.OnClickListener(){ 
 			@Override public void onClick(View v) { 
@@ -54,46 +54,38 @@ public class Test_img extends Activity {
 		if (resultCode == RESULT_OK) { 
 		
 			Uri uri = data.getData(); Log.e("uri", uri.toString()); 
-		
 			ContentResolver cr = this.getContentResolver();
 			
 			try { 
 				Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-				// String str = "iv0"+Integer.toString(aa);
+	
+				tupian = (TableRow) findViewById(R.id.tupian); 
+				word=(TableRow)findViewById(R.id.word); 
+				shanchu = (TableRow) findViewById(R.id.shanchu); 
+
 			
-			// ImageView imageView = (ImageView) findViewById(R.id.);
-			tupian = (TableRow) findViewById(R.id.tupian); 
-			word=(TableRow)findViewById(R.id.word); 
-			shanchu = (TableRow) findViewById(R.id.shanchu); 
+				tupian.addView(AddImageView(), 300 , 300);
+				word.addView(ShowWord(),300,300);
+				shanchu.addView(AddButton(), 300 , 50); 
 			
-			//tupian.addView(AddImageView(), 1); 
-			
-			tupian.addView(AddImageView(), 300 , 300);
-			word.addView(ShowWord(),300,300);
-			shanchu.addView(AddButton(), 300 , 50); 
-			
-			ImageView imageView1 = (ImageView) findViewById(index);
-			
-			ImageView_bi(imageView1 , bitmap );
-			
-//			TextView textview1 = (TextView) findViewById(0);
-			
-//			textview1.setText("Example TextView by corn");
+				ImageView imageView1 = (ImageView) findViewById(index);
+				ImageView_bi(imageView1 , bitmap );
 			} 
 			
 			catch (FileNotFoundException e) { 
 			
-				Log.e("Exception", e.getMessage(),e); } } 
+				Log.e("Exception", e.getMessage(),e); 
+			} 
+		} 
 		
-			super.onActivityResult(requestCode, resultCode, data); } 
+		super.onActivityResult(requestCode, resultCode, data); 
+} 
 	
-	// 动态添加 图片
-	
+	// 取得縮圖
 	private void ImageView_bi(ImageView imageView , Bitmap bitmap ) { 
 	
 		Bitmap mBitmap = Bitmap.createScaledBitmap(bitmap,100,100, true); 
 		imageView.setImageBitmap(mBitmap); } 
-
 	
 	protected View AddImageView() {
 		
@@ -111,8 +103,6 @@ public class Test_img extends Activity {
 		btn.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		btn.setText(UserID); //這一行是可以顯示文字的
 		return btn;
-		
-		
 	}
 
 protected View AddButton() { 
@@ -129,4 +119,4 @@ protected View AddButton() {
 	return btn; } 
 			
 
-	}
+}
